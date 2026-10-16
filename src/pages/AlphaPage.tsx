@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
+import {SITE_BRAND} from '../constants';
 
 // Интерфейс задачи
 interface Task {
@@ -7,10 +8,9 @@ interface Task {
 }
 
 export default function AlphaPage() {
-    // -------------------------------------------------------------------------
-    // 1. СОСТОЯНИЯ (STATE)
-    // -------------------------------------------------------------------------
-
+    useEffect(() => {
+        document.title = SITE_BRAND + ' / Alpha Page';
+    })
     // Счётчик
     const [count, setCount] = useState<number>(0);
 
@@ -28,9 +28,6 @@ export default function AlphaPage() {
     const [isLoadingTasks, setIsLoadingTasks] = useState<boolean>(true);
     const [isAddingTask, setIsAddingTask] = useState<boolean>(false);
 
-    // -------------------------------------------------------------------------
-    // 2. ЗАГРУЗКА ДАННЫХ ПРИ СТАРТЕ (EFFECTS)
-    // -------------------------------------------------------------------------
     useEffect(() => {
         // 1. Загрузка счётчика
         fetch('https://dev.ghotep.ru/api/counter.php')
@@ -73,8 +70,8 @@ export default function AlphaPage() {
     const updateServerCounter = (newCount: number) => {
         fetch('https://dev.ghotep.ru/api/counter.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ count: newCount }),
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({count: newCount}),
         }).catch(err => console.error('Ошибка сохранения счётчика:', err));
     };
 
@@ -101,8 +98,8 @@ export default function AlphaPage() {
 
         fetch('https://dev.ghotep.ru/api/user.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: nameToSend }),
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: nameToSend}),
         })
             .then(res => res.json())
             .then(data => {
@@ -123,8 +120,8 @@ export default function AlphaPage() {
 
         fetch('https://dev.ghotep.ru/api/tasks.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text }),
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({text}),
         })
             .then(res => res.json())
             .then(data => {
@@ -196,7 +193,8 @@ export default function AlphaPage() {
                                 >
                                     {isAddingTask ? (
                                         <>
-                                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            <span className="spinner-border spinner-border-sm" role="status"
+                                                  aria-hidden="true"></span>
                                             Добавление...
                                         </>
                                     ) : (
@@ -208,7 +206,8 @@ export default function AlphaPage() {
                             <ul className="list-group list-group-flush bg-transparent">
                                 {isLoadingTasks ? (
                                     <li className="list-group-item bg-transparent text-secondary text-center small border-0 py-3">
-                                        <div className="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+                                        <div className="spinner-border spinner-border-sm text-primary me-2"
+                                             role="status"></div>
                                         Загрузка задач из базы...
                                     </li>
                                 ) : tasks.length > 0 ? (
@@ -262,7 +261,8 @@ export default function AlphaPage() {
                                     >
                                         {isSavingName ? (
                                             <>
-                                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                <span className="spinner-border spinner-border-sm" role="status"
+                                                      aria-hidden="true"></span>
                                                 Сохранение...
                                             </>
                                         ) : (
@@ -295,8 +295,10 @@ export default function AlphaPage() {
                             </button>
 
                             {isOpen && (
-                                <div className="p-3 rounded bg-dark border border-secondary text-secondary small animate-fade mt-2">
-                                    🎉 Секретный блок открыт! Появление верстки на переменную из <code className="font-mono text-info">useState</code>.
+                                <div
+                                    className="p-3 rounded bg-dark border border-secondary text-secondary small animate-fade mt-2">
+                                    🎉 Секретный блок открыт! Появление верстки на переменную из <code
+                                    className="font-mono text-info">useState</code>.
                                 </div>
                             )}
                         </div>
