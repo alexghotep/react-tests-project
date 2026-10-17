@@ -1,4 +1,5 @@
 <?php
+/* rename this file to config.php */
 return [
     'host'    => '127.0.0.1',
     'port'    => '3308',
