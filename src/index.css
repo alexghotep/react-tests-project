@@ -1,11 +1,11 @@
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0d1117;
-  color: #e6edf3;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
   margin: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Растягиваем корневой контейнер React на всю высоту экрана */
 #root {
   min-height: 100vh;
   display: flex;
@@ -30,15 +30,15 @@ body {
   transform: translateX(-50%);
   width: 500px;
   height: 250px;
-  background: radial-gradient(circle, rgba(56, 139, 253, 0.15) 0%, rgba(13, 17, 23, 0) 70%);
+  background: radial-gradient(circle, rgba(56, 139, 253, 0.15) 0%, transparent 70%);
   z-index: -1;
   pointer-events: none;
 }
 
-/* Стилизация карточек */
+/* Стилизация карточек под обе темы */
 .project-card {
-  background-color: #161b22;
-  border: 1px solid #30363d;
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
   border-radius: 12px;
   transition: all 0.25s ease;
 }
@@ -46,11 +46,11 @@ body {
 .project-card:hover {
   transform: translateY(-4px);
   border-color: #58a6ff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .project-card-dashed {
-  border: 1px dashed #30363d;
+  border: 1px dashed var(--bs-border-color);
   background: transparent;
   min-height: 220px;
   cursor: pointer;
@@ -58,7 +58,7 @@ body {
 
 .project-card-dashed:hover {
   border-color: #58a6ff;
-  background-color: rgba(56, 139, 253, 0.03);
+  background-color: rgba(56, 139, 253, 0.05);
 }
 
 .icon-box {
@@ -76,15 +76,15 @@ body {
 .tag-badge {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  background-color: #21262d;
-  color: #8b949e;
-  border: 1px solid #30363d;
+  background-color: var(--bs-tertiary-bg);
+  color: var(--bs-secondary-color);
+  border: 1px solid var(--bs-border-color);
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
 }
 
 .navbar-custom {
-  background-color: rgba(13, 17, 23, 0.85);
+  background-color: var(--bs-body-bg);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #30363d;
+  border-bottom: 1px solid var(--bs-border-color);
 }

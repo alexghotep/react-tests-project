@@ -1,5 +1,5 @@
-import { useState, useEffect, type SyntheticEvent } from 'react';
-import { alphaApi, type Task } from '../api/alpha';
+import {useState, useEffect, type SyntheticEvent} from 'react';
+import {alphaApi, type Task} from '../api/alpha';
 
 export function TasksCard() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -75,7 +75,7 @@ export function TasksCard() {
                 >
                     {isSubmitting ? (
                         <>
-                            <span className="spinner-border spinner-border-sm" role="status" />
+                            <span className="spinner-border spinner-border-sm" role="status"/>
                             Добавление...
                         </>
                     ) : (
@@ -87,14 +87,14 @@ export function TasksCard() {
             <ul className="list-group list-group-flush bg-transparent">
                 {isLoading ? (
                     <li className="list-group-item bg-transparent text-secondary text-center small border-0 py-3">
-                        <span className="spinner-border spinner-border-sm text-primary me-2" role="status" />
+                        <span className="spinner-border spinner-border-sm text-primary me-2" role="status"/>
                         Загрузка задач из базы...
                     </li>
                 ) : tasks.length > 0 ? (
                     tasks.map(task => (
                         <li
                             key={task.id}
-                            className="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center border-secondary"
+                            className="list-group-item bg-transparent text-body d-flex justify-content-between align-items-center border-secondary border-opacity-25"
                         >
                             <span>{task.text}</span>
                             <button
@@ -103,7 +103,7 @@ export function TasksCard() {
                                 onClick={() => handleDelete(task.id)}
                                 title="Удалить задачу"
                             >
-                                <i className="bi bi-trash" />
+                                <i className="bi bi-trash"/>
                             </button>
                         </li>
                     ))

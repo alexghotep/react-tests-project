@@ -1,5 +1,5 @@
-import { useState, useEffect, type SyntheticEvent } from 'react';
-import { alphaApi } from '../api/alpha';
+import {useState, useEffect, type SyntheticEvent} from 'react';
+import {alphaApi} from '../api/alpha';
 
 export function UserProfileCard() {
     const [savedName, setSavedName] = useState<string>('Гость');
@@ -65,19 +65,19 @@ export function UserProfileCard() {
                         >
                             {isSaving ? (
                                 <>
-                                    <span className="spinner-border spinner-border-sm" role="status" />
+                                    <span className="spinner-border spinner-border-sm" role="status"/>
                                     Сохранение...
                                 </>
                             ) : (
                                 <>
-                                    <i className="bi bi-check2" /> Сохранить
+                                    <i className="bi bi-check2"/> Сохранить
                                 </>
                             )}
                         </button>
                     </div>
                 </form>
                 <div className="form-text text-secondary small">
-                    Здравствуйте, <span className="text-light fw-medium">{savedName}</span>
+                    Здравствуйте, <span className="text-body fw-medium">{savedName}</span>
                 </div>
             </div>
         </div>

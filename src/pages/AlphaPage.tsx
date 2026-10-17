@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { SITE_BRAND } from '../constants';
-import { TasksCard } from '../components/TasksCard';
-import { UserProfileCard } from '../components/UserProfileCard';
-import { SpoilerCard } from '../components/SpoilerCard';
-import { CounterCard } from '../components/CounterCard';
+import {useEffect} from 'react';
+import {SITE_BRAND} from '../constants';
+import {TasksCard} from '../components/TasksCard';
+import {UserProfileCard} from '../components/UserProfileCard';
+import {SpoilerCard} from '../components/SpoilerCard';
+import {CounterCard} from '../components/CounterCard';
 
 export default function AlphaPage() {
     useEffect(() => {
@@ -12,19 +12,13 @@ export default function AlphaPage() {
 
     return (
         <main className="container py-5">
-            <div className="mb-4">
-                <a href="/" className="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-2">
-                    <i className="bi bi-arrow-left" /> На главную
-                </a>
-            </div>
-
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
                     <div className="vstack gap-4">
-                        <TasksCard />
-                        <UserProfileCard />
-                        <SpoilerCard />
-                        <CounterCard />
+                        <TasksCard/>
+                        <UserProfileCard/>
+                        <SpoilerCard/>
+                        <CounterCard/>
                     </div>
                 </div>
             </div>

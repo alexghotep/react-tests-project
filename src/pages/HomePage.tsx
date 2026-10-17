@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {SITE_BRAND, SITE_TITLE, SITE_DESCRIPTION} from '../constants';
+import {SITE_BRAND, SITE_DESCRIPTION} from '../constants';
 
 // 1. Строго задаём 3 статуса
 type ProjectStatus = 'В работе' | 'Готов' | 'Запланирован';
@@ -11,7 +11,8 @@ interface Project {
     url: string;
     status: ProjectStatus;
     tags: string[];
-    icon: string;
+    icon?: string;
+    letter?: string;
 }
 
 // 2. Автоматическая привязка цвета бейджика к статусу
@@ -25,30 +26,39 @@ const STATUS_BADGE_CLASSES: Record<ProjectStatus, string> = {
 const INITIAL_PROJECTS: Project[] = [
     {
         id: 'alpha',
-        title: 'Project Alpha',
+        title: 'Project Alpha (α)',
         description: 'Тестирование базовой архитектуры, роутинга и работа с API.',
         url: '/alpha',
         status: 'Готов',
         tags: ['React 19', 'TypeScript', 'REST API'],
-        icon: 'bi-cpu',
+        letter: 'α', // или заглавная 'Α'
     },
     {
         id: 'beta',
-        title: 'Project Beta',
+        title: 'Project Beta (β)',
         description: 'Работа с различными применениями useState',
         url: '/beta',
         status: 'Готов',
         tags: ['React', 'TypeScript', 'useState'],
-        icon: 'bi-check2',
+        letter: 'β',
     },
     {
         id: 'gamma',
-        title: 'Project Gamma',
+        title: 'Project Gamma (γ)',
         description: 'Работа с различными применениями useState и useEffect',
         url: '/gamma',
         status: 'В работе',
         tags: ['React', 'TypeScript', 'useState', 'useEffect'],
-        icon: 'bi-check2',
+        letter: 'γ',
+    },
+    {
+        id: 'delta',
+        title: 'Project Delta (δ)',
+        description: 'Работа с контекстом и глобальным состоянием.',
+        url: '/delta',
+        status: 'Запланирован',
+        tags: ['React', 'Context API'],
+        letter: 'δ',
     },
     {
         id: 'ui-lab',
@@ -94,29 +104,13 @@ export default function App() {
 
     return (
         <>
-            {/* Навигация */}
-            <nav className="navbar navbar-expand-lg navbar-custom sticky-top py-3">
-                <div className="container">
-                    <a className="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
-                        <i className="bi bi-terminal-fill text-primary"></i>
-                        <span>{SITE_TITLE}</span>
-                    </a>
-                    <div className="ms-auto d-flex align-items-center gap-3">
-            <span className="font-mono small text-secondary d-none d-sm-inline">
-              <i className="bi bi-lightning-charge-fill text-info me-1"></i>
-              React + Vite
-            </span>
-                    </div>
-                </div>
-            </nav>
-
             {/* Основной контент */}
             <main className="flex-grow-1">
                 {/* Hero-секция */}
                 <section className="py-5 text-center hero-glow">
                     <div className="container py-3">
                         <div
-                            className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill border border-secondary border-opacity-25 bg-dark bg-opacity-50 mb-3 font-mono small text-secondary">
+                            className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill border border-secondary border-opacity-25 bg-body-tertiary mb-3 font-mono small text-secondary">
                             <span className="p-1 bg-success rounded-circle"></span>
                             <span>Система готова к работе</span>
                         </div>
@@ -170,19 +164,19 @@ export default function App() {
                                             className="card project-card h-100 p-4 d-flex flex-column justify-content-between">
                                             <div>
                                                 <div className="d-flex justify-content-between align-items-start mb-3">
-                                                    <div className="icon-box">
-                                                        <i className={`bi ${project.icon}`}></i>
+                                                    <div className="icon-box font-mono fw-bold">
+                                                        {project.letter ? (
+                                                            <span style={{ fontSize: '1.4rem', lineHeight: 1 }}>{project.letter}</span>
+                                                        ) : (
+                                                            <i className={`bi ${project.icon}`}></i>
+                                                        )}
                                                     </div>
-                                                    {/* Цвет бейджа теперь подтягивается сам по ключу статуса */}
-                                                    <span
-                                                        className={`badge ${STATUS_BADGE_CLASSES[project.status]} rounded-pill`}>
-                            {project.status}
-                          </span>
+                                                    <span className={`badge ${STATUS_BADGE_CLASSES[project.status]} rounded-pill`}>{project.status}</span>
                                                 </div>
 
                                                 <h3 className="h5 fw-bold mb-2">
                                                     <a href={project.url}
-                                                       className="text-decoration-none text-light stretched-link">
+                                                       className="text-decoration-none text-body stretched-link">
                                                         {project.title}
                                                     </a>
                                                 </h3>
@@ -196,9 +190,7 @@ export default function App() {
                                                 <div
                                                     className="d-flex flex-wrap gap-2 pt-3 border-top border-secondary border-opacity-25">
                                                     {project.tags.map((tag) => (
-                                                        <span key={tag} className="tag-badge">
-                              {tag}
-                            </span>
+                                                        <span key={tag} className="tag-badge">{tag}</span>
                                                     ))}
                                                 </div>
                                             </div>
@@ -211,7 +203,7 @@ export default function App() {
                                     <div
                                         className="p-5 rounded-3 border border-secondary border-opacity-25 text-center h-100 d-flex flex-column align-items-center justify-content-center">
                                         <i className="bi bi-inbox fs-1 text-secondary mb-2"></i>
-                                        <h4 className="h6 text-light mb-1">Проектов со статусом «{activeFilter}» пока
+                                        <h4 className="h6 text-body mb-1">Проектов со статусом «{activeFilter}» пока
                                             нет</h4>
                                         <p className="small text-secondary mb-3">Как только завершишь первый проект, он
                                             появится здесь.</p>
@@ -243,19 +235,6 @@ export default function App() {
                     </div>
                 </section>
             </main>
-
-            {/* Футер */}
-            <footer className="py-4 border-top border-secondary border-opacity-25 mt-auto">
-                <div
-                    className="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 small text-secondary">
-                    <div>
-                        &copy; {new Date().getFullYear()} {SITE_TITLE}. Все права защищены.
-                    </div>
-                    <div className="font-mono">
-                        Env: Development | Host: {window.location.host}
-                    </div>
-                </div>
-            </footer>
         </>
     );
 }

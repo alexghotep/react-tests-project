@@ -31,12 +31,6 @@ export default function BetaPage() {
 
     return (
         <div className="container py-5">
-            {/* Кнопка возврата на главную */}
-            <div className="mb-4">
-                <a href="/" className="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-2">
-                    <i className="bi bi-arrow-left"></i> На главную
-                </a>
-            </div>
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
                     <div className="vstack gap-4">
@@ -131,7 +125,7 @@ export default function BetaPage() {
                             </div>
 
                             <div className="form-text text-secondary small">
-                                Текущая роль: <span className="text-light fw-medium">{role}</span>
+                                Текущая роль: <span className="text-body fw-medium">{role}</span>
                             </div>
                         </div>
 
@@ -143,7 +137,7 @@ export default function BetaPage() {
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span className="text-secondary small d-block">Имя пользователя:</span>
-                                        <span className="text-light fw-medium fs-5">{name}</span>
+                                        <span className="text-body fw-medium fs-5">{name}</span>
                                     </div>
                                     <button
                                         type="button"
