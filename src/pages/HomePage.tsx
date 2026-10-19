@@ -45,10 +45,10 @@ const INITIAL_PROJECTS: Project[] = [
     {
         id: 'gamma',
         title: 'Project Gamma (γ)',
-        description: 'Работа с различными применениями useState и useEffect',
+        description: 'Работа с различными применениями .map к массивам',
         url: '/gamma',
         status: 'В работе',
-        tags: ['React', 'TypeScript', 'useState', 'useEffect'],
+        tags: ['React', 'TypeScript', 'Arrays', '.map'],
         letter: 'γ',
     },
     {
