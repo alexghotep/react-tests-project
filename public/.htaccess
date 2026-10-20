@@ -6,3 +6,18 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
+
+RewriteEngine On
+RewriteBase /
+
+# 1. Пропускаем реальные файлы и папки без изменений
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 2. Не пускаем запросы к API в SPA-роутер
+RewriteCond %{REQUEST_URI} ^/api/ [NC]
+RewriteRule ^ - [L]
+
+# 3. Всё остальное отдаём на index.html для React Router
+RewriteRule ^ index.html [L]

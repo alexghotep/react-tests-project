@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import AlphaPage from './pages/AlphaPage';
 import BetaPage from './pages/BetaPage';
 import GammaPage from './pages/GammaPage';
+import { DeltaPage } from './pages/DeltaPage';
 
 export default function App() {
     return (
@@ -25,6 +26,9 @@ export default function App() {
 
                         {/* Страница Project Gamma */}
                         <Route path="/gamma" element={<GammaPage/>}/>
+
+                        {/* Страница Project Delta */}
+                        <Route path="/delta" element={<DeltaPage/>}/>
 
                         {/* Редирект на главную */}
                         <Route path="*" element={<HomePage/>}/>
